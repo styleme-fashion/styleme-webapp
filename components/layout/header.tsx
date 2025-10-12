@@ -11,6 +11,15 @@ export default function AppHeader() {
   const mobileNavRef = useRef<HTMLElement | null>(null);
   const isMobile = useIsMobile();
 
+  const handleClickOutside = (e: React.MouseEvent) => {
+    if (
+      e.target !== mobileNavRef.current &&
+      !mobileNavRef.current?.contains(e.target as Node)
+    ) {
+      setIsMobileOpen(false);
+    }
+  };
+
   return (
     <header className="border-b border-border">
       {!isMobile ? (
@@ -43,14 +52,7 @@ export default function AppHeader() {
           {isMobileOpen && (
             <div
               className="absolute z-50 w-full bg-black/40 h-screen overflow-y-hidden shadow-md"
-              onClick={(e) => {
-                if (
-                  e.target !== mobileNavRef.current &&
-                  !mobileNavRef.current?.contains(e.target as Node)
-                ) {
-                  setIsMobileOpen(false);
-                }
-              }}
+              onClick={handleClickOutside}
             >
               <nav
                 ref={mobileNavRef}
