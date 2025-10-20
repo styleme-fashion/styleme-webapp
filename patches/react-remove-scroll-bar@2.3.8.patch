@@ -1,0 +1,48 @@
+diff --git a/dist/es2015/component.js b/dist/es2015/component.js
+index 4a7ee5b055a3c1e26445977eea909e369aee857b..5714306b29815eef99ecc000bf65cdce5585e59f 100644
+--- a/dist/es2015/component.js
++++ b/dist/es2015/component.js
+@@ -13,7 +13,7 @@ var getStyles = function (_a, allowRelative, gapMode, important) {
+     return "\n  .".concat(noScrollbarsClassName, " {\n   overflow: hidden ").concat(important, ";\n   padding-right: ").concat(gap, "px ").concat(important, ";\n  }\n  body[").concat(lockAttribute, "] {\n    overflow: hidden ").concat(important, ";\n    overscroll-behavior: contain;\n    ").concat([
+         allowRelative && "position: relative ".concat(important, ";"),
+         gapMode === 'margin' &&
+-            "\n    padding-left: ".concat(left, "px;\n    padding-top: ").concat(top, "px;\n    padding-right: ").concat(right, "px;\n    margin-left:0;\n    margin-top:0;\n    margin-right: ").concat(gap, "px ").concat(important, ";\n    "),
++            "\n    padding-left: ".concat(left, "px;\n    padding-top: ").concat(top, "px;\n    padding-right: ").concat(right, "px;\n    margin-left:0;\n    margin-top:0;\n    margin-right: 0").concat(";\n    "),
+         gapMode === 'padding' && "padding-right: ".concat(gap, "px ").concat(important, ";"),
+     ]
+         .filter(Boolean)
+diff --git a/dist/es2019/component.js b/dist/es2019/component.js
+index 96f6bbb506e7c26e46def0dc1876a34d349ea221..ceb090957879cfc61f605fa59d4730baa6991110 100644
+--- a/dist/es2019/component.js
++++ b/dist/es2019/component.js
+@@ -24,7 +24,7 @@ const getStyles = ({ left, top, right, gap }, allowRelative, gapMode = 'margin',
+     padding-right: ${right}px;
+     margin-left:0;
+     margin-top:0;
+-    margin-right: ${gap}px ${important};
++    margin-right:0;
+     `,
+     gapMode === 'padding' && `padding-right: ${gap}px ${important};`,
+ ]
+@@ -37,7 +37,7 @@ const getStyles = ({ left, top, right, gap }, allowRelative, gapMode = 'margin',
+   }
+   
+   .${fullWidthClassName} {
+-    margin-right: ${gap}px ${important};
++    margin-right:0;
+   }
+   
+   .${zeroRightClassName} .${zeroRightClassName} {
+diff --git a/dist/es5/component.js b/dist/es5/component.js
+index c29d6d8fe783a81bf1468511070f47db5c2fbacc..3d32149fc60957d7349503c35a534dcbc5be6632 100644
+--- a/dist/es5/component.js
++++ b/dist/es5/component.js
+@@ -17,7 +17,7 @@ var getStyles = function (_a, allowRelative, gapMode, important) {
+     return "\n  .".concat(constants_1.noScrollbarsClassName, " {\n   overflow: hidden ").concat(important, ";\n   padding-right: ").concat(gap, "px ").concat(important, ";\n  }\n  body[").concat(exports.lockAttribute, "] {\n    overflow: hidden ").concat(important, ";\n    overscroll-behavior: contain;\n    ").concat([
+         allowRelative && "position: relative ".concat(important, ";"),
+         gapMode === 'margin' &&
+-            "\n    padding-left: ".concat(left, "px;\n    padding-top: ").concat(top, "px;\n    padding-right: ").concat(right, "px;\n    margin-left:0;\n    margin-top:0;\n    margin-right: ").concat(gap, "px ").concat(important, ";\n    "),
++            "\n    padding-left: ".concat(left, "px;\n    padding-top: ").concat(top, "px;\n    padding-right: ").concat(right, "px;\n    margin-left:0;\n    margin-top:0;\n    margin-right:0").concat(";\n    "),
+         gapMode === 'padding' && "padding-right: ".concat(gap, "px ").concat(important, ";"),
+     ]
+         .filter(Boolean)
