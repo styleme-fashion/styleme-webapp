@@ -1,23 +1,23 @@
-"use client"
+"use client";
 
-import { useState } from "react"
+import { useState } from "react";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Label } from "@/components/ui/label"
-import { Checkbox } from "@/components/ui/checkbox"
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
+} from "@/components/ui/select";
 
 const stylePreferences = [
   "Minimalist",
@@ -30,7 +30,7 @@ const stylePreferences = [
   "Sporty",
   "Vintage",
   "Modern",
-]
+];
 
 const colorPreferences = [
   "Neutrals",
@@ -41,33 +41,33 @@ const colorPreferences = [
   "Jewel Tones",
   "Neons",
   "Metallics",
-]
+];
 
-export function WardrobePreferences() {
+export default function WardrobePreferences() {
   const [selectedStyles, setSelectedStyles] = useState<string[]>([
     "Minimalist",
     "Classic",
-  ])
+  ]);
   const [selectedColors, setSelectedColors] = useState<string[]>([
     "Neutrals",
     "Earth Tones",
-  ])
+  ]);
 
   const toggleStyle = (style: string) => {
     if (selectedStyles.includes(style)) {
-      setSelectedStyles(selectedStyles.filter((s) => s !== style))
+      setSelectedStyles(selectedStyles.filter((s) => s !== style));
     } else {
-      setSelectedStyles([...selectedStyles, style])
+      setSelectedStyles([...selectedStyles, style]);
     }
-  }
+  };
 
   const toggleColor = (color: string) => {
     if (selectedColors.includes(color)) {
-      setSelectedColors(selectedColors.filter((c) => c !== color))
+      setSelectedColors(selectedColors.filter((c) => c !== color));
     } else {
-      setSelectedColors([...selectedColors, color])
+      setSelectedColors([...selectedColors, color]);
     }
-  }
+  };
 
   return (
     <Card>
@@ -163,5 +163,5 @@ export function WardrobePreferences() {
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }

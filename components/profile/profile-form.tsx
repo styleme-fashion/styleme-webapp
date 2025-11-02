@@ -1,22 +1,22 @@
-"use client"
+"use client";
 
-import { useState } from "react"
+import { useState } from "react";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Camera } from "lucide-react"
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Camera } from "lucide-react";
 
-export function ProfileForm() {
-  const [name, setName] = useState("Jane Doe")
-  const [email, setEmail] = useState("jane@example.com")
+export default function ProfileForm() {
+  const [name, setName] = useState("Jane Doe");
+  const [email, setEmail] = useState("jane@example.com");
 
   return (
     <Card>
@@ -85,5 +85,5 @@ export function ProfileForm() {
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }

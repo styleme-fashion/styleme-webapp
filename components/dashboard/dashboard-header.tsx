@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,10 +10,34 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { User, LogOut, Settings } from "lucide-react"
+} from "@/components/ui/dropdown-menu";
+import { User, LogOut, Settings } from "lucide-react";
+import { createClient } from "@/lib/supabase/client";
+import { redirect } from "next/navigation";
+import { useAvatarStore } from "@/providers/avatar-store-provider";
+import { useEffect } from "react";
 
-export function DashboardHeader() {
+export default function DashboardHeader() {
+  const { setUid } = useAvatarStore((state) => state);
+
+  useEffect(() => {
+    async function fetchUser() {
+      const supabase = createClient();
+      const user = await supabase.auth.getUser();
+      setUid(user.data.user?.id || null);
+    }
+
+    fetchUser();
+  }, [setUid]);
+
+  const onLogOut = async () => {
+    const supabase = createClient();
+    await supabase.auth.signOut();
+    setUid(null);
+
+    redirect("/login");
+  };
+
   return (
     <header className="border-b border-border bg-background sticky top-0 z-50">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
@@ -56,7 +80,7 @@ export function DashboardHeader() {
               </Link>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="cursor-pointer">
+            <DropdownMenuItem onClick={onLogOut} className="cursor-pointer">
               <LogOut className="mr-2 h-4 w-4" />
               <span>Log out</span>
             </DropdownMenuItem>
@@ -64,5 +88,5 @@ export function DashboardHeader() {
         </DropdownMenu>
       </div>
     </header>
-  )
+  );
 }

@@ -20,7 +20,7 @@ export default function useIsMobile() {
     return () => {
       mql.removeEventListener("change", onResize);
     };
-  });
+  }, []);
 
   return !!isMobile;
 }

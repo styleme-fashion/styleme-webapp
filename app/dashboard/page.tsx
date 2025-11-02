@@ -1,27 +1,36 @@
-import { DashboardHeader } from '@/components/dashboard-header'
-import { WardrobeUpload } from '@/components/wardrobe-upload'
-import { VibeInput } from '@/components/vibe-input'
-import { OutfitSuggestions } from '@/components/outfit-suggestions'
+import DashboardHeader from "@/components/dashboard/dashboard-header";
+// import ClothesUpload from "@/components/dashboard/clothes-upload";
+import BodyPhotosUpload from "@/components/dashboard/body-photos-upload";
+import DashboardHeading from "@/components/dashboard/heading-section";
+import AnimatedDiv from "@/components/layout/animated-div";
+import { Suspense } from "react";
 
 export default function DashboardPage() {
   return (
-    <div className='min-h-screen bg-secondary/10'>
+    <div className="min-h-screen bg-background">
       <DashboardHeader />
-      <main className='container mx-auto px-4 py-8 space-y-8'>
-        <div className='space-y-2'>
-          <h2 className='text-3xl font-serif font-bold'>Welcome back, Jane</h2>
-          <p className='text-muted-foreground'>
-            Let&apos;s create your perfect outfit for today
-          </p>
-        </div>
+      {/* TODO: Create better loading screen */}
+      <Suspense fallback={<div>Loading...</div>}>
+        <main className="container mx-auto px-4 py-12 space-y-12">
+          <AnimatedDiv>
+            <DashboardHeading />
+          </AnimatedDiv>
 
-        <div className='grid lg:grid-cols-2 gap-8'>
-          <WardrobeUpload />
-          <VibeInput />
-        </div>
+          <div className="space-y-8">
+            {/* <AnimatedDiv delay={0.1}>
+            <ClothesUpload />
+          </AnimatedDiv> */}
 
-        <OutfitSuggestions />
-      </main>
+            <AnimatedDiv delay={0.2}>
+              <BodyPhotosUpload />
+            </AnimatedDiv>
+
+            {/* <AnimatedDiv delay={0.4}>
+            <ModelViewer />
+          </AnimatedDiv> */}
+          </div>
+        </main>
+      </Suspense>
     </div>
-  )
+  );
 }
