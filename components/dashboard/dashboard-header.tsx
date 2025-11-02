@@ -15,20 +15,22 @@ import { User, LogOut, Settings } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { redirect } from "next/navigation";
 import { useAvatarStore } from "@/providers/avatar-store-provider";
-import { useEffect } from "react";
+import { useState } from "react";
 
 export default function DashboardHeader() {
   const { setUid } = useAvatarStore((state) => state);
+  const [email, setEmail] = useState<string | undefined>(undefined);
+  // const [name, setName] = useState<string | undefined>(undefined);
 
-  useEffect(() => {
-    async function fetchUser() {
-      const supabase = createClient();
-      const user = await supabase.auth.getUser();
-      setUid(user.data.user?.id || null);
-    }
+  const fetchUser = async () => {
+    const supabase = createClient();
+    const user = await supabase.auth.getUser();
+    setEmail(user.data.user?.email);
+    // setName(user.data.user?.user_metadata?.);
+    setUid(user.data.user?.id || null);
+  };
 
-    fetchUser();
-  }, [setUid]);
+  fetchUser();
 
   const onLogOut = async () => {
     const supabase = createClient();
@@ -60,9 +62,9 @@ export default function DashboardHeader() {
           <DropdownMenuContent className="w-56" align="end" forceMount>
             <DropdownMenuLabel className="font-normal">
               <div className="flex flex-col space-y-1">
-                <p className="text-sm font-medium leading-none">Jane Doe</p>
+                {/* <p className="text-sm font-medium leading-none">{name}</p> */}
                 <p className="text-xs leading-none text-muted-foreground">
-                  jane@example.com
+                  {email}
                 </p>
               </div>
             </DropdownMenuLabel>
