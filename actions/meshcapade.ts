@@ -20,12 +20,13 @@ const getAssetIdFromDb = async () => {
 };
 
 const requestImageUploadLink = async (assetId: string) => {
+  console.log(assetId);
   const res = await fetch(
-    process.env.NEXT_PUBLIC_MESHCAPADE_API_URL + `/avatars/${assetId}/images`,
+    process.env.MESHCAPADE_API_URL + `/avatars/${assetId}/images`,
     {
       method: "POST",
       headers: {
-        Authorization: "Bearer " + process.env.NEXT_PUBLIC_MESHCAPADE_API_TOKEN,
+        Authorization: "Bearer " + process.env.MESHCAPADE_API_TOKEN,
         "Content-Type": "application/json",
       },
     }
@@ -52,11 +53,11 @@ export const handleImageUpload = async () => {
 
 export const initiateAvatarCreation = async () => {
   const res = await fetch(
-    process.env.NEXT_PUBLIC_MESHCAPADE_API_URL + "/avatars/create/from-images",
+    process.env.MESHCAPADE_API_URL + "/avatars/create/from-images",
     {
       method: "POST",
       headers: {
-        Authorization: "Bearer " + process.env.NEXT_PUBLIC_MESHCAPADE_API_TOKEN,
+        Authorization: "Bearer " + process.env.MESHCAPADE_API_TOKEN,
         "Content-Type": "application/json",
       },
     }
