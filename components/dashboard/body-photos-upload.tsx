@@ -1,17 +1,17 @@
 // import { useState } from "react";
 
-import { Upload, X, Check } from "lucide-react";
+// import { Upload, X, Check } from "lucide-react";
 import { Card } from "@/components/ui/card";
-import Image from "next/image";
+// import Image from "next/image";
 import { Button } from "../ui/button";
 // import { useAvatarStore } from "@/app/providers/avatar-store-provider";
 import { handleImageUpload } from "@/actions/meshcapade";
 
-interface BodyPhoto {
-  type: "front" | "side" | "back";
-  file: File | null;
-  preview: string | null;
-}
+// interface BodyPhoto {
+//   type: "front" | "side" | "back";
+//   file: File | null;
+//   preview: string | null;
+// }
 
 export default async function BodyPhotosUpload() {
   // const { assetId, setAssetId, uid } = useAvatarStore((state) => state);
